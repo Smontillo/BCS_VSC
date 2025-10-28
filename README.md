@@ -5,7 +5,7 @@ This code produces Figure 1 of the paper **"Vibrational Strong Coupling in Cavit
 $⟹$ https://chemrxiv.org/engage/chemrxiv/article-details/68e9945e5dd091524fdf4fbb 
 ---
 
-We solve the BCS equations by minimizing a fixed-point map over the global parameters $ g_{\mu m}^{\ast} v_m $.
+We solve the BCS equations by minimizing a fixed-point map over the global parameters $$g_{\mu m}^{\ast} v_m$$.
 To achieve this, we define the auxiliary variables
 
 $$
