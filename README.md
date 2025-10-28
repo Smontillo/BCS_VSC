@@ -10,7 +10,7 @@ We solve the BCS equationst by minimizing the fixed-point map approach on the gl
 \begin{aligned}
 S_g &= \sum_m g_{\mu m}^{\ast} v_m, \\
 S_{g/\delta} &= \sum_m \frac{g_{\mu m}^{\ast} v_m}{\delta_m}.
-\end{aligned}
+\end{aligned} ```
 Then the gap equation can be rewritten as
 \begin{align}
     \Delta_n &= \sum_{m\neq n}G_{nm}u_m^*v_m  = \frac{g_n}{2} \left(\sum_m \frac{g_mu_m^*v_m}{\delta_n} + \sum_m \frac{g_mu_m^*v_m}{\delta_m}\right) = \frac{g_n}{2} \left(\frac{S_g}{\delta_n} + S_{g/\delta}\right).
