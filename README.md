@@ -30,3 +30,15 @@ $$
 = \frac{1}{2}\!\left(1 - \frac{\widetilde{\omega}_n - \mu}{E_n}\right).
 $$
 
+We achieve this conditional minimization by monotone bisection of the chemical potential $\mu$. Given the terms $\mu$, $S_g$ and $S_{g,\delta}$, the gaps are updated according to Eq. 2 and the variable $u_n^*v_n$ is recomputed for each cycle as
+$$
+\begin{aligned}
+   u_n^*v_n = \frac{\Delta_n}{2E_n}, \quad E_n = \sqrt{(\widetilde{\omega}_n-\mu)^2+\Delta_n^2},
+\end{aligned}
+$$
+
+which is then used to update $S_g$ and $S_{g,\delta}$. The update of each of the minimized variables is done through linear mixing, where the old and new values of the given variable are combined according to the mixing value $\alpha$ as $x = (1 - \alpha)\cdot x^\mathrm{old} + \alpha\cdot  x^\mathrm{new}$, to improve stabilization.
+This process is repeated until $\max\left(|\Delta\mu|,|\Delta S_g|,|S_{g/\delta}|\right) < \epsilon$ and $|\sum_n |v_n|^2 - \bar{n}|< \epsilon$, where $\epsilon$ is the tolerance parameter.
+
+To perform the simulations, we sample $N$ vibrational frequencies $\omega_n$ from a Gaussian distribution with standard deviation $\sigma$. The Schrieffer–Wolff transformation used in this paper requires the perturbation parameter $|\lambda_{n}|=\left|g_{n}/\delta_{n}\right| \ll 1$, therefore, during the sampling we only keep the frequencies that fulfill the condition $|\omega_n - \omega_c| > g_n$.
+
