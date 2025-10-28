@@ -5,7 +5,7 @@ This code produces Figure 1 of the paper **"Vibrational Strong Coupling in Cavit
 $⟹$ https://chemrxiv.org/engage/chemrxiv/article-details/68e9945e5dd091524fdf4fbb 
 ---
 
-We solve the BCS equations by minimizing a fixed-point map over the global parameters $$g_{\mu m}^{\ast} v_m$$.
+We solve the BCS equations by minimizing a fixed-point map over the global parameters $$g_mu_m^{\ast} v_m$$.
 To achieve this, we define the auxiliary variables
 
 $$
@@ -21,8 +21,8 @@ $$
 \end{aligned}
 $$
 
-One can thus minimize \( S_g \) and \( S_{g/\delta} \) while enforcing that the
-expectation value of the phonon excitation number \( \bar{n} \) is constrained to the Boltzmann distribution value:
+One can thus minimize $$S_g$$ and $$S_{g/\delta}$$ while enforcing that the
+expectation value of the phonon excitation number $$\bar{n}$$ is constrained to the Boltzmann distribution value:
 
 $$
 \sum_n |v_n|^2
@@ -30,7 +30,7 @@ $$
 = \frac{1}{2}\!\left(1 - \frac{\widetilde{\omega}_n - \mu}{E_n}\right).
 $$
 
-We achieve this conditional minimization by monotone bisection of the chemical potential $\mu$. Given the terms $\mu$, $S_g$ and $S_{g,\delta}$, the gaps are updated according to Eq. 2 and the variable $u_n^*v_n$ is recomputed for each cycle as
+We achieve this conditional minimization by monotone bisection of the chemical potential $$\mu$$. Given the terms $$\mu$$, $$S_g$$ and $$S_{g,\delta}$$, the gaps are updated according to Eq. 2 and the variable $u_n^*v_n$ is recomputed for each cycle as
 $$
 \begin{aligned}
 u_n^*v_n = \frac{\Delta_n}{2E_n}, \quad E_n = \sqrt{(\widetilde{\omega}_n-\mu)^2+\Delta_n^2},
