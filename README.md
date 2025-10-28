@@ -17,20 +17,20 @@ $$
 \\
 \begin{aligned}
     \Delta_n &= \sum_{m\neq n}G_{nm}u_m^*v_m  = \frac{g_n}{2} \left(\sum_m \frac{g_mu_m^*v_m}{\delta_n} + \sum_m \frac{g_mu_m^*v_m}{\delta_m}\right) = \frac{g_n}{2} \left(\frac{S_g}{\delta_n} + S_{g/\delta}\right).
-\end{align}
+\end{aligned}
 $$
 One can thus minimize $S_g$ and $S_{g,\delta}$, while enforcing the
 expectation value for the phonon excitation number ($\bar{n}$) to be constrained at the Boltzmann distribution value
 $$
-\begin{align}
+\begin{aligned}
     \sum_n|v_{n}|^2 = \sum_{n} \frac{e^{-\beta\hbar\widetilde{\omega}_{n}}}{1+e^{-\beta\hbar\widetilde{\omega}_{n}}} = \frac{1}{2}\left(1 - \frac{\widetilde{\omega}_n - \mu}{E_n}\right).
-\end{align}
-
+\end{aligned}
+$$
 We achieve this conditional minimization by monotone bisection of the chemical potential $\mu$. Given the terms $\mu$, $S_g$ and $S_{g,\delta}$, the gaps are updated according to Eq. 2 and the variable $u_n^*v_n$ is recomputed for each cycle as
 $$
-\begin{align}
+\begin{aligned}
    u_n^*v_n = \frac{\Delta_n}{2E_n}, \quad E_n = \sqrt{(\widetilde{\omega}_n-\mu)^2+\Delta_n^2},
-\end{align}
+\end{aligned}
 $$
 which is then used to update $S_g$ and $S_{g,\delta}$. The update of each of the minimized variables is done through linear mixing, where the old and new values of the given variable are combined according to the mixing value $\alpha$ as $x = (1 - \alpha)\cdot x^\mathrm{old} + \alpha\cdot  x^\mathrm{new}$, to improve stabilization.
 This process is repeated until $\max\left(|\Delta\mu|,|\Delta S_g|,|S_{g/\delta}|\right) < \epsilon$ and $|\sum_n |v_n|^2 - \bar{n}|< \epsilon$, where $\epsilon$ is the tolerance parameter.
