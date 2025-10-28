@@ -20,6 +20,7 @@ $$
 \Delta_n &= \sum_{m\neq n}G_{nm}u_m^*v_m  = \frac{g_n}{2} \left(\sum_m \frac{g_mu_m^*v_m}{\delta_n} + \sum_m \frac{g_mu_m^*v_m}{\delta_m}\right) = \frac{g_n}{2} \left(\frac{S_g}{\delta_n} + S_{g/\delta}\right).
 \end{aligned}
 $$
+
 One can thus minimize \( S_g \) and \( S_{g/\delta} \) while enforcing that the
 expectation value of the phonon excitation number \( \bar{n} \) is constrained to the Boltzmann distribution value:
 
