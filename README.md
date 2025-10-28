@@ -1,16 +1,16 @@
 # BCS_VSC
 Minimization of the Bardeen–Cooper–Schrieffer (BCS) like equations for the Tavis-Cummings Hamiltonian for Vibrational Strong Coupling (VSC). 
 
-This code produces Figure 1 of the paper **"Vibrational Strong Coupling in Cavity QED forms a Macroscopic Quantum State"** \\
+This code produces Figure 1 of the paper **"Vibrational Strong Coupling in Cavity QED forms a Macroscopic Quantum State"** 
 $⟹$ https://chemrxiv.org/engage/chemrxiv/article-details/68e9945e5dd091524fdf4fbb 
 ---
 
 We solve the BCS equationst by minimizing the fixed-point map approach on the global $g_mu_m^*v_m$ parameters. To achieve this, we defined the auxiliary variables
-'''math
+```math
 \begin{aligned}
-    S_g = \sum_m g_mu_m^*v_m, \quad S_{g/\delta} = \sum_m \frac{g_mu_m^*v_m}{\delta_m}.
+S_g &= \sum_m g_{\mu m}^{\ast} v_m, \\
+S_{g/\delta} &= \sum_m \frac{g_{\mu m}^{\ast} v_m}{\delta_m}.
 \end{aligned}
-'''
 Then the gap equation can be rewritten as
 \begin{align}
     \Delta_n &= \sum_{m\neq n}G_{nm}u_m^*v_m  = \frac{g_n}{2} \left(\sum_m \frac{g_mu_m^*v_m}{\delta_n} + \sum_m \frac{g_mu_m^*v_m}{\delta_m}\right) = \frac{g_n}{2} \left(\frac{S_g}{\delta_n} + S_{g/\delta}\right).
