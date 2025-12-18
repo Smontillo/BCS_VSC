@@ -18,7 +18,7 @@ The *BCS.py* file is the main code of this repository. It minimizes the BCS equa
 - Line 203 | Plot    : True/False → Enables/Disables the plotting of the molecular frequency distribution.
 
 When the minimization procedure is enabled, two files are generated:
-- Par.npy            | Size → (1,3) | [$$\mu,S_g,S_{g\delta}$$] 
+- Par.npy            | Size → (1,3) | [[`μ`, `S_g`, `S_{gδ}`]] 
 - Numerical_Data.npy | Size → (N,5) | [$$\omega_0,u_n,v_n,\Delta_n,E_n$$]
 Check Technical Details below for the meaning of the different variables.
 
