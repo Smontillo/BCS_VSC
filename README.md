@@ -7,15 +7,15 @@ This code produces Figure 1 of the paper **"Vibrational Strong Coupling in Cavit
 
 ### Repository Files
 Libraries used:
-    - Numpy             → Mathematical functions, random number generators and linear algebra routines.
-    - Matplotlib.pyplot → Plotting
-    - Numba             → Just-in-time compiler to accelerate numerical functions.
+- Numpy             → Mathematical functions, random number generators and linear algebra routines.
+- Matplotlib.pyplot → Plotting
+- Numba             → Just-in-time compiler to accelerate numerical functions.
 
 The *BCS.py* file is the main code of this repository. It minimizes the BCS equations through a combination of the bisection searching method and a Self Consistent Field (SCF) approach (check Supporting Information Section V or Technical Details below).
 
-    - Line 201 | Min     : True/False → Enables/Disables minimization procedure.
-    - Line 202 | verbose : True/False → Enables/Disables minimization summary printing at every 10 minimization steps (Only works if numba functions are turned off).
-    - Line 203 | Plot    : True/False → Enables/Disables the plotting of the molecular frequency distribution.
+- Line 201 | Min     : True/False → Enables/Disables minimization procedure.
+- Line 202 | verbose : True/False → Enables/Disables minimization summary printing at every 10 minimization steps (Only works if numba functions are turned off).
+- Line 203 | Plot    : True/False → Enables/Disables the plotting of the molecular frequency distribution.
 
 When the minimization procedure is enabled, two files are generated:
     - Par.npy            | Size → (1,3) | [$$\mu,S_g,S_{g\delta}$$] 
