@@ -19,7 +19,7 @@ The *BCS.py* file is the main code of this repository. It minimizes the BCS equa
 
 When the minimization procedure is enabled, two files are generated:
 - Par.npy            | Size → (1,3) | [μ, S<sub>g</sub>, S<sub>gδ</sub>] 
-- Numerical_Data.npy | Size → (N,5) | [$$\omega_0,u_n,v_n,\Delta_n,E_n$$]
+- Numerical_Data.npy | Size → (N,5) | [ω<sub>0</sub>, u<sub>n</sub>, v<sub>n</sub>, Δ<sub>n</sub>, E<sub>n</sub>]
 Check Technical Details below for the meaning of the different variables.
 
 The *Plot.py* reads the Par.npy and Numerical_Data.npy files to produce the different plot presented in Figure 1 of the main text.
