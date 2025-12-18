@@ -186,8 +186,7 @@ beta   = 1 / temp
 # =====================================================
 N      = int(1E7)
 ω0     = 1000 * cm2au
-Δ_dt   = 1 * cm2au
-ωc     = ω0 + Δ_dt
+ωc     = ω0 
 σ      = 20 * cm2au
 ε      = 0.01 * cm2au 
 
@@ -196,7 +195,6 @@ N      = int(1E7)
 g0     = ΩR / (2 * N**0.5) * np.ones(N)
 print(f'Number of molecules    → {N:.1e}')
 print(f'σ                      → {σ/cm2au:.3f} cm⁻¹')
-print(f'Detuning               → {Δ_dt/cm2au:.3f} cm⁻¹')
 print(f'Perturbation Par.      → {g0[0]/ε:.3f} cm⁻¹')
 print(f'g0                     → {g0[0]/cm2au:.6f} cm⁻¹')
 print('======================================================')
@@ -223,7 +221,7 @@ if __name__ == "__main__":
         print(f'μ           → {μ/cm2au:.3} cm⁻¹')
         print(f'Error       → {err:.3e}')
         print('======================================================')
-        np.save('Par.npy', np.c_[μ/cm2au,Sg, Sgd])
+        np.save('Par.npy', np.c_[μ/cm2au,Sg,Sgd])
         np.save('Numerical_Data.npy', np.c_[ω_lst/cm2au, un, vn, Δa/cm2au, Ea/cm2au])
         fn_time = time.time()
         print(f'Time → {(fn_time - st_time)/60:.3} min')
@@ -232,75 +230,6 @@ if __name__ == "__main__":
     # =====================================================
     col = ['#3498db', '#9b59b6', '#e74c3c', '#e67e22', '#34495e', '#1abc9c']
     if Plot:
-        # =====================================================
-        # E_n vs. (ω0 - μ)
-        # =====================================================
-        fig, ax = plt.subplots(figsize = (3,3))
-        ax.plot((ω_lst/cm2au - μ/cm2au), Ea/cm2au, ls = '-', lw = 2, c = f'{col[0]}')#, marker = 'o', markersize = 1)
-        ax.plot((ω_lst/cm2au - μ/cm2au), -Ea/cm2au, ls = '-', lw = 2, c = f'{col[2]}')#, marker = 'o', markersize = 1)
-            # ax.axvline((ωc-μ/cm2au)/cm2au, ls = '--', lw = 0.5, c = 'black', label = '$\omega_c$')
-        ax.set_xlabel(r'$\omega_0 - \mu$ (cm$^{-1}$)')
-        ax.set_ylabel(r'$E_n$ (cm$^{-1}$)')
-        # ax.set_xlim(min((ω_lst - μ)/cm2au),max((ω_lst - μ)/cm2au))
-        plt.tight_layout()
-        plt.legend(frameon=False, fontsize=5, title = r'σ (cm⁻¹)', title_fontsize=6, handlelength=1.5, handletextpad=0.5)
-        plt.savefig('./Images/Eig_En.png', dpi = 300, bbox_inches = 'tight')
-        plt.close()
-        # =====================================================
-        # u_n*v_n vs. (ω0 - μ)
-        # =====================================================
-        fig, ax = plt.subplots(figsize = (3,3))
-        ax.plot((ω_lst/cm2au), un * vn, ls = '-', lw = 2, label = r'$u_n\cdot v_n$', c = f'{col[0]}')#, marker = 'o', markersize = 1)
-        ax.plot((ω_lst/cm2au), Δa/(2*Ea), ls = '--', lw = 1, label = r'$\frac{Δ_n}{2E_n}$', c = f'{col[2]}')#, marker = 'o', markersize = 1)
-            # ax.axvline((ωc-μ)/cm2au, ls = '--', lw = 0.5, c = 'black', label = '$\omega_c$')
-        ax.set_xlabel(r'$\omega_0 - \mu$ (cm$^{-1}$)')
-        # ax.set_ylabel(r'$u_n^*⋅v_n$')
-        ax.set_xlim(min((ω_lst)/cm2au),max((ω_lst)/cm2au))
-        plt.legend(frameon=False, fontsize=5, title = r'σ (cm⁻¹)', title_fontsize=6, handlelength=1.5, handletextpad=0.5)
-        plt.savefig('./Images/uv_plot.png', dpi = 300, bbox_inches = 'tight')
-        plt.close()
-        # =====================================================
-        # u_n², v_n² vs. (ω0 - μ)
-        # =====================================================
-        fig, ax = plt.subplots(figsize = (3,3), dpi = 200)
-        ax.plot((ω_lst/cm2au - μ/cm2au),np.conjugate(vn)*vn, ls = '-', lw = 2, label = r'$v_n$', c = f'{col[0]}')#, marker = 'o', markersize = 2)
-        ax.plot((ω_lst/cm2au - μ/cm2au),np.conjugate(un)*un, ls = '-', lw = 2, label = r'$v_n$', c = f'{col[2]}')#, label = r'$u_n^2$')#, marker = 'o', markersize = 2)
-        ax.axvline((ωc-μ)/cm2au, ls = '--', lw = 0.5, c = 'black', label = r'$\omega_c$')
-        ax.set_xlabel(r'$ω_0 - \mu$ (cm$^{-1}$)')
-        # ax.set_xlim(200,220)
-        # ax.set_ylim(-50,0)
-        plt.legend(frameon=False, fontsize=5, title = r'σ (cm⁻¹)', title_fontsize=6, handlelength=1.5, handletextpad=0.5)
-        plt.savefig('./Images/vn2_un2.png', dpi = 300, bbox_inches = 'tight')
-        plt.close()
-        # =====================================================
-        # Δn vs. (ω0 - μ)
-        # =====================================================
-        fig, ax = plt.subplots(figsize = (3,3), dpi = 200)
-        Δ = np.ma.masked_where(np.abs(Δa/cm2au) > 198, Δa/cm2au)
-        ax.plot((ω_lst/cm2au), Δ, ls = '-', lw = 2, c = f'{col[0]}')
-        ax.axvline((ωc)/cm2au, ls = '--', lw = 0.5, c = 'black', label = '$\omega_c$')
-        # ax.axvline((ω0)/cm2au, ls = '--', lw = 0.5, c = 'black', label = '$\omega_0$')
-        ax.set_xlabel(r'$\omega$ (cm$^{-1}$)')
-        ax.set_ylabel(r'$\Delta_n$ (cm$^{-1}$)')
-        ax.set_xlim(ωc/cm2au - 5,ωc/cm2au + 5)
-        ax.set_ylim(-150,150)
-        plt.legend(frameon=False, ncol = 3, fontsize=5, handlelength=1.5, handletextpad=0.5)
-        plt.savefig('./Images/GapEq.png', dpi = 300, bbox_inches = 'tight')
-        plt.close()
-        # =====================================================
-        # Δn vs. (ω0 - μ) DIFFERENCE
-        # =====================================================
-        fig, ax = plt.subplots(figsize = (3,3), dpi = 200)
-        Δ = np.ma.masked_where(np.abs(Δa/cm2au) > 198, Δa/cm2au)
-        ax.plot((ω_lst/cm2au), (Δ - Δ[0]), ls = '-', lw = 2, c = f'{col[2]}')
-        ax.axvline((ωc)/cm2au, ls = '--', lw = 0.5, c = 'black', label = '$\omega_c$')
-        ax.set_xlabel(r'$\omega$ (cm$^{-1}$)')
-        ax.set_ylabel(r'$Δ_n - Δ_n(0)$ (cm$^{-1}$)')
-        ax.set_xlim(ωc/cm2au - 5,ωc/cm2au + 5)
-        ax.set_ylim(-150,150)
-        plt.legend(frameon=False, ncol = 3,fontsize=5, title = r'σ (cm⁻¹)', title_fontsize=6, handlelength=1.5, handletextpad=0.5)
-        plt.savefig('./Images/GapEq_diff.png', dpi = 300, bbox_inches = 'tight')
-        plt.close()
         # =====================================================
         # HISTOGRAM
         # =====================================================

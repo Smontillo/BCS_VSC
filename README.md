@@ -5,8 +5,27 @@ This code produces Figure 1 of the paper **"Vibrational Strong Coupling in Cavit
 
 ⟹ https://chemrxiv.org/engage/chemrxiv/article-details/68e9945e5dd091524fdf4fbb 
 
----
+### Repository Files
+Libraries used:
+    - Numpy             → Mathematical functions, random number generators and linear algebra routines.
+    - Matplotlib.pyplot → Plotting
+    - Numba             → Just-in-time compiler to accelerate numerical functions.
 
+The *BCS.py* file is the main code of this repository. It minimizes the BCS equations through a combination of the bisection searching method and a Self Consistent Field (SCF) approach (check Supporting Information Section V or Technical Details below).
+
+    - Line 201 | Min     : True/False → Enables/Disables minimization procedure.
+    - Line 202 | verbose : True/False → Enables/Disables minimization summary printing at every 10 minimization steps (Only works if numba functions are turned off).
+    - Line 203 | Plot    : True/False → Enables/Disables the plotting of the molecular frequency distribution.
+
+When the minimization procedure is enabled, two files are generated:
+    - Par.npy            | Size → (1,3) | [$$\mu,S_g,S_{g\delta}$$] 
+    - Numerical_Data.npy | Size → (N,5) | [$$\omega_0,u_n,v_n,\Delta_n,E_n$$]
+Check Technical Details below for the meaning of the different variables.
+
+The *Plot.py* reads the Par.npy and Numerical_Data.npy files to produce the different plot presented in Figure 1 of the main text.
+
+---
+## Technical Details
 We solve the BCS equations by minimizing a fixed-point map over the global parameters $$g_mu_m^{\ast} v_m$$.
 To achieve this, we define the auxiliary variables
 
@@ -41,7 +60,7 @@ u_n^*v_n = \frac{\Delta_n}{2E_n}, \quad E_n = \sqrt{(\widetilde{\omega}_n-\mu)^2
 $$
 
 which is then used to update $S_g$ and $S_{g,\delta}$. The update of each of the minimized variables is done through linear mixing, where the old and new values of the given variable are combined according to the mixing value $\alpha$ as $x = (1 - \alpha)\cdot x^\mathrm{old} + \alpha\cdot  x^\mathrm{new}$, to improve stabilization.
-This process is repeated until $\max\left(|\Delta\mu|,|\Delta S_g|,|S_{g/\delta}|\right) < \epsilon$ and $|\sum_n |v_n|^2 - \bar{n}|< \epsilon$, where $\epsilon$ is the tolerance parameter.
+This process is repeated until $\max\left(|\Delta\mu|,|\Delta S_g|,|\Delta S_{g/\delta}|\right) < \epsilon$ and $|\sum_n |v_n|^2 - \bar{n}|< \epsilon$, where $\epsilon$ is the tolerance parameter.
 
-To perform the simulations, we sample $N$ vibrational frequencies $\omega_n$ from a Gaussian distribution with standard deviation $\sigma$. The Schrieffer–Wolff transformation used in this paper requires the perturbation parameter $|\lambda_{n}|=\left|g_{n}/\delta_{n}\right| \ll 1$, therefore, during the sampling we only keep the frequencies that fulfill the condition $|\omega_n - \omega_c| > g_n$.
+To perform the simulations, we sample $N$ vibrational frequencies $\omega_n$ from a Gaussian distribution with standard deviation $\sigma$. The Schrieffer–Wolff transformation used in this paper requires the perturbation parameter $|\lambda_{n}|=\left|g_{n}/\delta_{n}\right| \ll 1$, therefore, during the sampling we only keep the frequencies that fulfill the condition $|\omega_n - \omega_c| > g_n/\epsilon$.
 
