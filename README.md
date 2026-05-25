@@ -1,7 +1,7 @@
 # BCS_VSC
 Minimization of the Bardeen–Cooper–Schrieffer (BCS) like equations for the Tavis-Cummings Hamiltonian for Vibrational Strong Coupling (VSC). 
 
-DOI: 10.5281/zenodo.20383983
+[![DOI](https://zenodo.org/badge/1085167039.svg)](https://doi.org/10.5281/zenodo.20383982)
 
 This code produces Figure 1 of the paper **"Vibrational Strong Coupling in Cavity QED forms a Macroscopic Quantum State"**
 
